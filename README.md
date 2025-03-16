@@ -25,3 +25,7 @@ With this code right here, we do use bind mounts. But this approach alone is not
 ## What did we do here?
 
 We bind mount a host file path to container. This way any changes we made inside our working directory(i.e. given host file path) is constantly updated to the inside of the container. But here things come tricky, since the docker itself looking to our host file path also for packages.json if we dont have necessary files, we are getting an error saying that our server doesnt work because of the nedeed packages. Therefor we are using `-v /app/node_modules` which overrides the host file path(host_file_path/app/node_modules) for packages and if we change anything in the host file path, that is updated instantly in the container.
+
+### .dockerignore
+
+.dockerignore works just like git ignore, you ignore the specific files that will not be copied to the container. 
